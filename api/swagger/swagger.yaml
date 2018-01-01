@@ -19,7 +19,7 @@ paths:
       description: Adds a user
       operationId: addUser
       parameters:
-        - name: name
+        - name: user
           in: body
           description: New user
           required: true
@@ -56,6 +56,40 @@ paths:
           description: Successful operation
           schema:
             $ref: '#/definitions/User'
+    put:
+      description: Updates user
+      operationId: updateUser
+      parameters:
+        - name: _id
+          in: path
+          description: ID of user to update
+          required: true
+          type: string
+        - name: user
+          in: body
+          description: Updated user
+          required: true
+          schema:
+            $ref: '#/definitions/NewUser'
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            type: string
+    delete:
+      description: Deletes user
+      operationId: deleteUser
+      parameters:
+        - name: _id
+          in: path
+          description: ID of user to delete
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            type: string
   /swagger:
     x-swagger-pipe: swagger_raw
 definitions:
