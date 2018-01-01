@@ -1,15 +1,22 @@
 'use strict';
 
-var mongoose = require('mongoose');
+import mongoose from 'mongoose';
+import Config from '../../config/config.js';
 
-module.exports.connect = function connect () {
-    mongoose.connect('mongodb://admin:123@userscluster-shard-00-00-tmfmm.mongodb.net:27017,userscluster-shard-00-01-tmfmm.mongodb.net:27017,userscluster-shard-00-02-tmfmm.mongodb.net:27017/users?ssl=true&replicaSet=UsersCluster-shard-0&authSource=admin');
+export default class DB {
 
-    var db = mongoose.connection;
+    connect () {
 
-    db.on('error', console.error.bind(console, 'connection error:'));
+        const db = mongoose.connection;
+        const conf = new Config;
 
-    db.once('open', function() {
-      console.log('Connected to DB! \nWaiting...');
-    });
-  }
+        mongoose.connect(conf.getConfig().mongoCluster);
+
+        db.on('error', console.error.bind(console, 'connection error:'));
+
+        db.once('open', function() {
+            console.log('Connected to DB! \nWaiting...');
+        });
+    }
+
+}

@@ -1,18 +1,18 @@
 'use strict';
 
-var db = require('../helpers/db.js');
-var User = require('../models/user.js');
-var util = require('util');
+import DB from '../helpers/db.js';
+import User from '../models/user.js';
 
+const db = new DB();
+
+db.connect();
 module.exports = {
   addUser: addUser,
   getUsers: getUsers
 };
 
-db.connect();
-
 function addUser(req, res) {
-    var newUser = new User(req.swagger.params.name.value);
+    let newUser = new User(req.swagger.params.name.value);
 
     newUser.save(function (err, newUser) {
         if (err) return console.error(err);
@@ -22,6 +22,15 @@ function addUser(req, res) {
 
 function getUsers(req, res) {
     User.find(function (err, users) {
+        if (err) return console.error(err);
+        res.json(users);
+    });
+}
+
+function getUserById(req, res) {
+    let id = req.swagger.params.name.value;
+
+    User.findOne({'_id': id},function (err, users) {
         if (err) return console.error(err);
         res.json(users);
     });
