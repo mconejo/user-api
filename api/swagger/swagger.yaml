@@ -2,10 +2,9 @@ swagger: "2.0"
 info:
   version: "0.0.1"
   title: Users API
-host: localhost:10010
+host: users-api-7296.herokuapp.com
 basePath: /
 schemes:
-  - http
   - https
 consumes:
   - application/json
