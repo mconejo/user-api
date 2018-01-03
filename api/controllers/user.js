@@ -16,7 +16,7 @@ module.exports = {
 
 function addUser(req, res) {
     let newUser = new User(req.swagger.params.user.value.newUser);
-
+    console.log(newUser);
     newUser.save(function (err, newUser) {
         if (err) return console.error(err);
         res.json(newUser);
