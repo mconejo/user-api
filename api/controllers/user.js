@@ -2,7 +2,6 @@
 
 import DB from '../helpers/db.js';
 import User from '../models/user.js';
-import NewUser from '../models/newUser.js';
 
 const db = new DB();
 
@@ -17,7 +16,7 @@ module.exports = {
 
 function addUser(req, res) {
     console.log(req.swagger.params.user.value);
-    let newUser = new NewUser(req.swagger.params.user.value);
+    let newUser = new User(req.swagger.params.user.value);
 
     newUser.save(function (err, newUser) {
         if (err) return console.error(err);
