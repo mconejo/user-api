@@ -19,7 +19,7 @@ function addUser(req, res) {
 
     newUser.save(function (err, newUser) {
         if (err) return console.error(err);
-        res.json('User created successfully. ID: ' + newUser._id);
+        res.json(newUser);
     });
 }
 

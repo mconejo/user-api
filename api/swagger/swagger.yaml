@@ -28,7 +28,7 @@ paths:
         '200':
           description: Successful operation
           schema:
-            type: string
+            $ref: '#/definitions/User'
     get:
       description: Gets full list of users
       operationId: getUsers
