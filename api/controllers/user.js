@@ -15,8 +15,7 @@ module.exports = {
 };
 
 function addUser(req, res) {
-    console.log(req.swagger.params.user.value);
-    let newUser = new User(req.swagger.params.user.value);
+    let newUser = new User(req.swagger.params.user.value.newUser);
 
     newUser.save(function (err, newUser) {
         if (err) return console.error(err);
